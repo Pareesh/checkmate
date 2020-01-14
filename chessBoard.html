@@ -2,14 +2,31 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="./model/*.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./controller/chessBoardController.js"></script>
+    <script type="text/javascript" src="./Constant.js"></script>
+    <script type="text/javascript" src="./model/Piece.js"></script>
+    <script type="text/javascript" src="./model/Pawn.js" ></script>
+    <script type="text/javascript" src="./model/Bishop.js"></script>
+    <script type="text/javascript" src="./model/King.js"></script>
+    <script type="text/javascript" src="./model/Knight.js"></script>
+    <script type="text/javascript" src="./model/Queen.js"></script>
+    <script type="text/javascript" src="./model/Rook.js"></script>
+    <script type="text/javascript" src="./model/CreateChessPiece.js"></script>
+    <script type="text/javascript" src="./controller/PigChessBoard.js"></script>
+    <script type="text/javascript" src="./controller/PigRow.js"></script>
+    <script type="text/javascript" src="./controller/PigCell.js"></script>
+    <script type="text/javascript" src="./controller/PigPiece.js"></script>
     <title></title>
   </head>
   <body>
-  <p>PAREESH</p>
+    <div>
+        <pig-chessboard>
+            <pig-row>
+                <pig-cell>
+                    <pig-piece type = "pawn"></pig-piece>
+                    <div class = "pig-checkmate-player" value = "playerOne"></div>
+                </pig-cell>
+            </pig-row>
+        </pig-chessBoard>
+    </div>
   </body>
 </html>
-<head>
-
-</head>

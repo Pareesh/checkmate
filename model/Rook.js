@@ -1,4 +1,4 @@
-var Rook = function(){
+var Rook = function(player){
     Piece.call(this, "rook", player);
 };
 
