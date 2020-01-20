@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <title></title>
     <script type="text/javascript" src="./Constant.js"></script>
     <script type="text/javascript" src="./model/Piece.js"></script>
     <script type="text/javascript" src="./model/Pawn.js" ></script>
@@ -11,22 +12,232 @@
     <script type="text/javascript" src="./model/Queen.js"></script>
     <script type="text/javascript" src="./model/Rook.js"></script>
     <script type="text/javascript" src="./model/CreateChessPiece.js"></script>
+    <script type="text/javascript" src="./view/CreateChessRow.js"></script>
     <script type="text/javascript" src="./controller/PigChessBoard.js"></script>
     <script type="text/javascript" src="./controller/PigRow.js"></script>
     <script type="text/javascript" src="./controller/PigCell.js"></script>
     <script type="text/javascript" src="./controller/PigPiece.js"></script>
-    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="./view/PigCell.css">
   </head>
   <body>
     <div>
-        <pig-chessboard>
-            <pig-row>
-                <pig-cell>
-                    <pig-piece type = "pawn"></pig-piece>
-                    <div class = "pig-checkmate-player" value = "playerOne"></div>
-                </pig-cell>
-            </pig-row>
-        </pig-chessBoard>
+      <pig-player value = "playerOne" name = "" colour = "" type = "">
+      </pig-player>
+      <pig-player value = "playerTwo" name = "" colour = "" type = "">
+      </pig-player>
+      <table class = "pig-checkmate-chessboard">
+        <tbody>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "0">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="rook" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="knight" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="bishop" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="queen" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="king" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="bishop" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="knight" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="rook" colour = "white"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "1">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "white"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "2">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "3">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "4">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "5">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="empty" colour = "none"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "6">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="pawn" colour = "black"></pig-piece>
+            </td>
+          </tr>
+          <tr class = "pig-checkmate-chessboard-row" rowId = "7">
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="rook" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="knight" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="bishop" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="queen" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="king" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="bishop" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "black">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="knight" colour = "black"></pig-piece>
+            </td>
+            <td class = "pig-checkmate-chessboard-row-data" colour = "white">
+              <pig-piece class = "pig-checkmate-chessboard-piece" type="rook" colour = "black"></pig-piece>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

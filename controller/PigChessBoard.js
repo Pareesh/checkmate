@@ -1,19 +1,13 @@
-class PigChessBoard extends HTMLElement{
+(function(){
 
-    constructor(){
-        super();
-    }
-
-    connectedCallback(){
-        console.log(this);
-    }
-
-    disconnectedCallback(){
+    function chessboard(element){
+      var el = element;
 
     }
 
-    attributeChangedCallback(){
-
-    }
-}
-window.customElements.define("pig-chessboard", PigChessBoard);
+    document.addEventListener("DOMContentLoaded", function(event){
+        var currentEL = event.target;
+        var element = currentEL.querySelector(".pig-checkmate-chessboard");
+        chessboard(element);
+    });
+}());

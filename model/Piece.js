@@ -1,7 +1,5 @@
-var Piece = function(name, player){
-    this.name = name;
+var Piece = function(){
     this.alive = true;
-    this.white = player;
     this.positionX = undefined;
     this.positionY = undefined;
 };
@@ -16,11 +14,4 @@ Piece.prototype.setPositionY = function (positionY) {
 
 Piece.prototype.setIsAlive = function (alive) {
     isBoolean(value) ? this.alive = alive : undefined;
-};
-
-Piece.prototype.getIsWhite = function () {
-    return this.white;
-};
-Piece.prototype.getName = function () {
-    return this.name;
 };

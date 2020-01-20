@@ -1,19 +1,15 @@
-class PigRow extends HTMLElement{
+(function(){
 
-    constructor(){
-        super();
+    function chessboardRow(element){
+        var el = element;
+        var id = el.attributes.rowId.value;
     }
 
-    connectedCallback(){
-        console.log(this);
-    }
-
-    disconnectedCallback(){
-
-    }
-
-    attributeChangedCallback(){
-
-    }
-}
-window.customElements.define("pig-row", PigRow);
+    document.addEventListener("DOMContentLoaded", function(event){
+        var currentEL = event.target;
+        var rows = currentEL.querySelectorAll(".pig-checkmate-chessboard-row");
+        rows.forEach(function(row){
+            new chessboardRow(row);
+        });
+    });
+}());

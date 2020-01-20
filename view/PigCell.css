@@ -1,3 +1,39 @@
-pig-cell{
-  
+html{
+  box-sizing: border-box;
+}
+
+body{
+}
+
+table.pig-checkmate-chessboard{
+    border: 4px solid #32a1ce;
+}
+
+.pig-checkmate-chessboard-row{
+}
+
+.pig-checkmate-chessboard-row-data{
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.pig-checkmate-chessboard-row-data[colour="black"]{
+  background-color: #c8a786;
+}
+
+.pig-checkmate-chessboard-row-data[colour="white"]{
+  background-color: #E5E5E5;
+}
+
+.pig-checkmate-chessboard-piece{
+  width: 80px;
+  height: 80px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pig-checkmate-chessboard-piece img{
+  width: 60px;
+  height: 60px;
 }

@@ -1,5 +1,5 @@
 PlayerTwoController = function(){
-    PlayerController.call(this, PLAYER.BLACK);
+    PlayerController.call(this, constants.BLACK);
     this.initializePosition(7, 0, -1);
     console.log("hello");
 }

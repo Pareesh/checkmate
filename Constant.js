@@ -12,5 +12,12 @@ const CHECKMATE = {
           "PLAYERONE": "playerOne",
           "PLAYERTWO": "playerTwo"
         }
+    },
+    "VIEW": {
+        "ROW": {
+          "PAWNS": "pawns",
+          "SPECIAL": "special",
+          "EMPTY": "empty"
+        }
     }
 }
