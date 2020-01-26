@@ -1,5 +1,6 @@
-var Queen = function(player){
-    Piece.call(this, "queen", player);
+var Queen = function(player, index){
+    this._name = "queen";
+    Piece.call(this, player, index);
 };
 
 Queen.prototype = Object.create(Piece.prototype);

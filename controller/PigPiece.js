@@ -1,40 +1,65 @@
 (function(){
-    var type;
-    var object;
-    var colour;
-    var img;
 
-    function addImage(){
-        var image = document.createElement("IMG");
+    const TYPE = ["rook","knight","bishop","queen","king","bishop","knight","rook","pawn","empty"];
+    function getImage(type, colour){
+        var image = document.createElement("img");
         var src = "./images/" + colour + "_" + type + ".png";
         image.setAttribute("src", src);
         return image;
     }
 
-    class PigPiece extends HTMLElement{
+    function getType(index){
+        if(index < 8){
+            return TYPE[index]
+        }else if(index < 16){
+            return TYPE[8];
+        }else if(index < 48){
+            return TYPE[9];
+        }else if(index < 56){
+            return TYPE[8];
+        }else if(index < 64){
+            return TYPE[index-56];
+        }
+    }
 
+    function getColour(index){
+        if(index < 16){
+            return "white";
+        }else if(index > 47 && index < 64){
+            return "black";
+        }else{
+            return "";
+        }
+    }
+
+    class PigPiece extends HTMLElement{
         constructor(){
             super();
         }
 
         connectedCallback(){
-            type = this.attributes.type.value;
-            colour = this.attributes.colour.value;
-            object = createChessPiece(type);
-            if(type !== "empty"){
-                img = addImage();
-                this.append(img);
+            var index = this.closest(".pig-table-cell").getAttribute("index");
+            var type = this.getAttribute("type") || getType(index);
+            var colour = this.getAttribute("colour") || getColour(index);
+
+            this.setAttribute("type", type);
+            this.setAttribute("colour", colour);
+
+            if(type !== "empty" && colour !== ""){
+                var img = getImage(type, colour);
+                this._img = img;
+                this.appendChild(img);
             }
         }
 
         disconnectedCallback(){
-          type = undefined;
-          object = undefined;
+          if(this.img)
+          this.removeChild(this.img);
         }
 
         attributeChangedCallback(){
 
         }
     }
-    window.customElements.define("pig-piece", PigPiece);
+    window.customElements.define("pig-cell-piece", PigPiece);
 }());

@@ -5,27 +5,34 @@ html{
 body{
 }
 
-table.pig-checkmate-chessboard{
+table.pig-chessboard{
     border: 4px solid #32a1ce;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
 }
 
-.pig-checkmate-chessboard-row{
+.pig-table-row{
 }
 
-.pig-checkmate-chessboard-row-data{
+.pig-table-cell{
   box-sizing: border-box;
   padding: 10px;
+  border: 1px solid #858585;
 }
 
-.pig-checkmate-chessboard-row-data[colour="black"]{
-  background-color: #c8a786;
+.pig-table-cell[colour="black"]{
+  background-color: #d7c1a8;
 }
 
-.pig-checkmate-chessboard-row-data[colour="white"]{
-  background-color: #E5E5E5;
+.pig-table-cell[colour="white"]{
+  background-color: #e6e6e6;
 }
 
-.pig-checkmate-chessboard-piece{
+.pig-table-cell[selected]{
+  background-color: #9999ff;
+}
+
+pig-cell-piece{
   width: 80px;
   height: 80px;
   display: table-cell;
@@ -33,7 +40,7 @@ table.pig-checkmate-chessboard{
   vertical-align: middle;
 }
 
-.pig-checkmate-chessboard-piece img{
+pig-cell-piece img{
   width: 60px;
   height: 60px;
 }

@@ -9,15 +9,18 @@ const CHECKMATE = {
           "KING": "king"
         },
         "PLAYER": {
-          "PLAYERONE": "playerOne",
-          "PLAYERTWO": "playerTwo"
+          "PLAYER_ONE": "playerOne",
+          "PLAYER_TWO": "playerTwo"
         }
     },
     "VIEW": {
-        "ROW": {
+        "ROW_TYPE": {
           "PAWNS": "pawns",
           "SPECIAL": "special",
           "EMPTY": "empty"
+        },
+        "SELECTOR":{
+
         }
     }
 }
