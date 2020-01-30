@@ -1,5 +1,6 @@
 var Pawn = function(player, index){
     this._name = CHECKMATE.MODEL.PIECE.PAWN;
+    this._moved = false;
     Piece.call(this, player, index);
 };
 
@@ -10,9 +11,9 @@ Pawn.prototype.getMoves = function (state) {
     const moves = this._player === "playerOne" ? [[0,1]] : [[0,-1]];
     var res = [];
     var move =  moves[0];
-    let index = this._index + move[0] + 8 * move[1];;
-    if(index >= 0 && index < 64 && state && this._player !== state.getInfo(index)._player){
-        res.append([index]);
+    let index = this._index + move[0] + 8 * move[1];
+    if(this.withInChessBoard(this._index, move[0], move[1]) && state && state[index].data._name === "empty"){
+        res.push(index);
     }
     return res;
 };
@@ -22,11 +23,19 @@ Pawn.prototype.getSpecialMoves = function (state) {
     var res = [];
     for(let i = 0; i < moves.length; i++){
         var move = moves[i];
-        let index = this._index + move[0] + 8 * move[1];;
-        if(index >= 0 && index < 64 && state && this._player !== state.getInfo(index)._player
-            && state.getInfo(index)._name !== "empty"){
-            res.append([index]);
+        let index = this._index + move[0] + 8 * move[1];
+        if(this.withInChessBoard(this._index, move[0], move[1]) && state && this._player !== state[index].data.getPlayer() && state[index].data._name !== "empty"){
+            res.push(index);
         }
+    }
+
+    if(!this._moved){
+        var move = this._player === "playerOne" ? [0, 2] : [0, -2];
+        let index = this._index + move[0] + 8 * move[1];
+        if(this.withInChessBoard(this._index, move[0], move[1]) && state && state[index].data._name === "empty"){
+            res.push(index);
+        }
+        this._moved = true;
     }
     return res;
 };

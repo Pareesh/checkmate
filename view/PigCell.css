@@ -18,6 +18,8 @@ table.pig-chessboard{
   box-sizing: border-box;
   padding: 10px;
   border: 1px solid #858585;
+  display: table-cell;
+  position:relative;
 }
 
 .pig-table-cell[colour="black"]{
@@ -43,4 +45,13 @@ pig-cell-piece{
 pig-cell-piece img{
   width: 60px;
   height: 60px;
+}
+
+.pig-table-cell img.availableMove{
+  position:absolute;
+  left : 35px;
+  top : 35px;
+  width: 30px;
+  height: 30px;
+  background-color : inherit;
 }

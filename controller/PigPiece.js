@@ -28,7 +28,7 @@
         }else if(index > 47 && index < 64){
             return "black";
         }else{
-            return "";
+            return "none";
         }
     }
 
@@ -45,7 +45,7 @@
             this.setAttribute("type", type);
             this.setAttribute("colour", colour);
 
-            if(type !== "empty" && colour !== ""){
+            if(type !== "empty" && colour !== "none" && !this._img){
                 var img = getImage(type, colour);
                 this._img = img;
                 this.appendChild(img);
@@ -53,12 +53,9 @@
         }
 
         disconnectedCallback(){
-          if(this.img)
-          this.removeChild(this.img);
         }
 
         attributeChangedCallback(){
-
         }
     }
     window.customElements.define("pig-cell-piece", PigPiece);

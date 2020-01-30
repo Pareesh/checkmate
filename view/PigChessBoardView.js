@@ -2,6 +2,31 @@ var PigChessBoardView = function(el) {
     this._self = el;
     initializeBoard(el);
     this._tbody = document.querySelector("tbody");
+    this._onClick = function(event){
+
+    }
+
+    this._updateMoves = function(indices){
+        for(var index of indices){
+            var element = el.querySelector(".pig-table-cell[index='" + index + "'] pig-cell-piece");
+            element.appendChild(createAvailableMoveImage());
+        }
+    }
+
+    this._resetMoves = function(){
+        var elements = el.querySelectorAll("img.availableMove");
+        for(var element of elements){
+            element.remove();
+        }
+    }
+}
+
+function createAvailableMoveImage(){
+    var img = document.createElement("img");
+    var src = "./images/availableMove.png";
+    img.setAttribute("src",src);
+    img.classList.add("availableMove");
+    return img;
 }
 
 function initializeBoard(el){

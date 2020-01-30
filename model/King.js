@@ -12,8 +12,8 @@ King.prototype.getMoves = function (state) {
     for(let i = 0; i < moves.length; i++){
         let move = moves[i];
         let index = this._index +  move[0] + 8 * move[1];
-        if(index >= 0 && index < 64 && state && this._player !== state.getInfo(index)._player){
-            res.append([index]);
+        if(this.withInChessBoard(this._index, move[0], move[1]) && state && this._player !== state[index].data.getPlayer()){
+            res.push(index);
         }
     }
     return res;
