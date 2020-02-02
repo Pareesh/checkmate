@@ -9,6 +9,8 @@ function PigChessBoardController(el, model){
     this.click = function(index){
         model.click(index);
         view.updateView(model.getState(), model.getDirtyIndices());
+        if(Utils.checkForWinCondition(model.getState(), model.getCurrentPlayer())){
+        }
         model.resetDirtyIndices();
     }
 }

@@ -31,16 +31,17 @@ function PigChessBoardModel(model, player){
     }());
 
     function setNextPossibleMoves(index){
-        var moves = state[index].getValidMoves(state);
+        var moves = getValidMoves(index);
         for(var move of moves){
             state[move].set("nextPossibleMove", true);
         }
     }
 
     function resetNextPossibleMoves(index){
-        var moves = state[index].getValidMoves(state);
-        for(var move of moves){
-            state[move].set("nextPossibleMove", false);
+        for(var index in state){
+            if(state[index].get("nextPossibleMove")){
+                state[index].set("nextPossibleMove", false);
+            }
         }
     }
 
@@ -53,7 +54,7 @@ function PigChessBoardModel(model, player){
             return false
         }
 
-        if(state[index].getValidMoves(state).length <= 0){
+        if(getValidMoves(index).length <= 0){
             return false;
         }
         return true;
@@ -68,7 +69,7 @@ function PigChessBoardModel(model, player){
             return false;
         }
 
-        if(state[selectedIndex].getValidMoves(state).indexOf(parseInt(index)) < 0){
+        if(getValidMoves(selectedIndex).indexOf(parseInt(index)) < 0){
             return false;
         }
         return true;
@@ -78,6 +79,40 @@ function PigChessBoardModel(model, player){
         var info = new PigCellModel(undefined, undefined, "empty").get("info");
         state[index].set("info", state[selected].get("info"));
         state[selected].set("info", info);
+    }
+
+    function getValidMoves(index){
+        var validMoves = state[index].getValidMoves(state);
+        if(validMoves.length <= 0){
+          return [];
+        }
+
+        if(Utils.isInCheckCondition(state, currentPlayer)){
+            var checkValidMoves = Utils.getValidMovesInCheck(state, currentPlayer);
+            if(checkValidMoves[index]){
+                var temp = [];
+                validMoves.forEach(function(move){
+                    if(checkValidMoves[index].indexOf(move) >= 0){
+                        temp.push(move);
+                    }
+                });
+                validMoves = temp;
+            }else{
+              validMoves = [];
+            }
+        }
+
+        if(index && validMoves.length > 0){
+            var moves = Utils.getValidMovesAvoidCheck(index, state, currentPlayer);
+            var temp = [];
+            validMoves.forEach(function(move){
+                if(moves.indexOf(move) >= 0){
+                    temp.push(move);
+                }
+            });
+            validMoves = temp;
+        }
+        return validMoves;
     }
 
     return {
@@ -120,6 +155,9 @@ function PigChessBoardModel(model, player){
                 if(state[index].get("dirty"))
                     state[index].set("dirty", false);
             }
+        },
+        getCurrentPlayer : function(){
+            return currentPlayer;
         }
     }
 }
