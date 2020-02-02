@@ -1,7 +1,6 @@
-var Empty = function(index){
-    Piece.call(this, undefined, index, "none");
-    this._name = "empty";
-    this.setIsAlive(false);
+var Empty = function(index, player){
+    Piece.call(this, undefined);
+    this._type = "empty";
 };
 
 Empty.prototype = Object.create(Piece.prototype);

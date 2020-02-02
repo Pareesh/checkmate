@@ -1,57 +1,54 @@
-var Piece = function(player, index, colour){
+var Piece = function(player){
     this._player = player;
-    this._colour = colour;
-    this._alive = true;
-    this._index = index;
+    this._colour = player ? player.COLOUR : undefined;
     this._selected = false;
+    this._nextPossibleMove = false;
 };
 
-Piece.prototype.setIndex = function (index) {
-    this._index = index;
-};
+// Piece.prototype.getSelected = function () {
+//     return this._selected;
+// };
+//
+// Piece.prototype.setSelected = function (value) {
+//     this._selected = value;
+//     this.setDirty(true);
+// };
+//
+// Piece.prototype.getNextPossibleMove = function () {
+//     return this._nextPossibleMove;
+// };
+//
+// Piece.prototype.setNextPossibleMove = function (value) {
+//     this._nextPossibleMove = value;
+//     this.setDirty(true);
+// };
+//
+// Piece.prototype.getDirty = function () {
+//     return this._dirty;
+// };
+//
+// Piece.prototype.setDirty = function (value) {
+//     this._dirty = value;
+// };
+//
+// Piece.prototype.getPlayer = function () {
+//     return this._player;
+// };
 
-Piece.prototype.getIndex = function (index) {
-    return this._index;
-};
-
-Piece.prototype.getSelected = function (selected) {
-    this._selected = selected;
-};
-
-Piece.prototype.setSelected = function (index) {
-    return this._selected;
-};
-
-Piece.prototype.getPlayer = function () {
-    return this._player;
-};
-
-Piece.prototype.getIsAlive = function () {
-    return this._alive
-};
-
-Piece.prototype.setIsAlive = function (alive) {
-    this._alive = alive;
-};
-
-Piece.prototype.getColour = function () {
-    return this.colour;
-};
-
-Piece.prototype.getValidMoves = function (state) {
-    var res = [];
-    res = res.concat(this.getMoves(state));
-    res = res.concat(this.getSpecialMoves(state));
-    return res;
-};
-
-Piece.prototype.getMoves = function (state) {
-    return [];
-};
-
-Piece.prototype.getSpecialMoves = function (state) {
-    return [];
-};
+// Piece.prototype.getValidMoves = function (index, state) {
+//     var res = [];
+//     res = res.concat(this.getMoves(index, state));
+//     res = res.concat(this.getSpecialMoves(index, state));
+//     return res;
+// };
+//
+// Piece.prototype.getMoves = function (state) {
+//     return [];
+// };
+//
+// Piece.prototype.getSpecialMoves = function (state) {
+//     return [];
+// };
 
 Piece.prototype.withInChessBoard = function (index, offsetX, offsetY) {
     var x = index%8 + offsetX;
@@ -61,18 +58,3 @@ Piece.prototype.withInChessBoard = function (index, offsetX, offsetY) {
     }
     return false;
 };
-
-Piece.prototype.click = function(prevModel){
-    var curr = this;
-    var prev = prevModel ? prevModel : undefined;
-    if(!prev){
-        this._selected = true;
-        return true;
-    }else if(prev === curr){
-        this._selected = false;
-        return true;
-    }else{
-        prevModel._selected = false;
-        return false;
-    }
-}

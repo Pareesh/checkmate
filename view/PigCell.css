@@ -27,7 +27,7 @@ table.pig-chessboard{
 }
 
 .pig-table-cell[colour="white"]{
-  background-color: #e6e6e6;
+  background-color: #e1e1e1;
 }
 
 .pig-table-cell[selected]{

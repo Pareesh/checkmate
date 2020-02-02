@@ -1,63 +1,55 @@
-var PigChessBoardView = function(el) {
-    this._self = el;
-    initializeBoard(el);
-    this._tbody = document.querySelector("tbody");
-    this._onClick = function(event){
+var PigChessBoardView = function(modelState, controller) {
+    var self = this;
+    var el = document.querySelector(".pig-chessboard");
+    var viewState = {};
 
-    }
+    (function initialize(){
+        var tbody = document.createElement("tbody");
+        for(var index = 0; index < PIGMATE.SIZE.ROW * PIGMATE.SIZE.COLUMN; index++){
+            if(index%8 == 0){
+                var row = createTableRow();
+            }
 
-    this._updateMoves = function(indices){
-        for(var index of indices){
-            var element = el.querySelector(".pig-table-cell[index='" + index + "'] pig-cell-piece");
-            element.appendChild(createAvailableMoveImage());
-        }
-    }
-
-    this._resetMoves = function(){
-        var elements = el.querySelectorAll("img.availableMove");
-        for(var element of elements){
-            element.remove();
-        }
-    }
-}
-
-function createAvailableMoveImage(){
-    var img = document.createElement("img");
-    var src = "./images/availableMove.png";
-    img.setAttribute("src",src);
-    img.classList.add("availableMove");
-    return img;
-}
-
-function initializeBoard(el){
-    var size = [8,8];
-    var tbody = document.createElement("tbody");
-    for(let i = 0; i < size[0]; i++){
-        var row = createTableRow(i);
-        for(let j = 0; j < size[1]; j++){
-            var cell = createTableCell(i*size[0]+j);
+            var cell = createTableCell(index);
+            viewState[index] = new PigCellView(cell, modelState[index]);
             row.appendChild(cell);
+
+            if((index+1)%8 == 0){
+                tbody.appendChild(row);
+            }
         }
-        tbody.appendChild(row);
-    }
-    el.appendChild(tbody);
-}
+        el.appendChild(tbody);
+    }());
 
-function createTableRow(index){
-    var el = document.createElement("tr");
-    el.classList.add("pig-table-row");
-    el.setAttribute("index", index);
-    return el;
-}
-
-function createTableCell(index){
-    var el = document.createElement("td");
-    el.setAttribute("index", index);
-    el.classList.add("pig-table-cell");
-    if(index%2){
-        el.setAttribute("colour", "white");
-    }else{
-        el.setAttribute("colour", "black");
+    function createTableRow(){
+        var row = document.createElement("tr");
+        row.classList.add("pig-table-row");
+        return row;
     }
-    return el;
+
+    function createTableCell(index){
+        var cell = document.createElement("td");
+        cell.setAttribute("index", index);
+        cell.classList.add("pig-table-cell");
+        if((index+parseInt(index/8, 10))%2){
+            cell.setAttribute("colour", "white");
+        }else{
+            cell.setAttribute("colour", "black");
+        }
+        return cell;
+    }
+
+    el.addEventListener("click", function(event){
+        var matchedTarget = event.target.closest(".pig-table-cell");
+        var index = matchedTarget.getAttribute("index");
+        if(controller.click){
+            controller.click(index);
+        }
+    });
+
+    this.updateView = function(newModel, indices){
+        for(var index of indices){
+            viewState[index].updateView(newModel[index]);
+        }
+    }
 }

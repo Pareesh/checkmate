@@ -1,53 +1,30 @@
-function PigCellView(el){
-    this._el = el;
+function PigCellView(el, model){
     var self = this;
-    var index = el.getAttribute("index");
-    initialize(el);
-    var pigPiece = el.querySelector("pig-cell-piece");
+    this._piece = getPigPiece(model);
+    el.appendChild(this._piece);
 
-    function initialize(el){
-        el.appendChild(getPigPiece());
-    }
-
-    function getPigPiece() {
+    function getPigPiece(model) {
         var piece = document.createElement("pig-cell-piece");
+        piece.setAttribute("type", model.get("type"));
+        piece.setAttribute("colour", model.get("colour"));
+        if(model.get("selected")){
+            el.setAttribute("selected", "");
+        }else{
+            el.removeAttribute("selected");
+        }
+        if(model.get("nextPossibleMove")){
+            piece.setAttribute("nextPossibleMove", true);
+        }else{
+            piece.removeAttribute("nextPossibleMove");          
+        }
         return piece;
     }
 
-    function getEmptyPigPiece() {
-        var piece = getPigPiece();
-        piece.setAttribute("type","empty");
-        piece.setAttribute("colour","none");
-        return piece;
-    }
-
-    this._click = function(prevView){
-        var curr = this._el;
-        var prev = prevView ? prevView._el : undefined;
-        if(!prev){
-            curr.setAttribute("selected","");
-            return;
-        } else if(prev !== curr){
-            var removed = prev.removeChild(prev.children[0]);
-            curr.removeChild(curr.children[0]);
-            curr.appendChild(removed);
-            prev.appendChild(getEmptyPigPiece());
+    return {
+        updateView : function(newModel){
+            var piece = getPigPiece(newModel);
+            el.replaceChild(piece, self._piece);
+            self._piece = piece;
         }
-        prev.removeAttribute("selected");
-    }
-
-    this.updateMoves = function(indices){
-        var curr = this._el;
-        var prev = prevView ? prevView._el : undefined;
-        if(!prev){
-            curr.setAttribute("selected","");
-            return;
-        } else if(prev !== curr){
-            var removed = prev.removeChild(prev.children[0]);
-            curr.removeChild(curr.children[0]);
-            curr.appendChild(removed);
-            prev.appendChild(getEmptyPigPiece());
-        }
-        prev.removeAttribute("selected");
     }
 }
